@@ -10,6 +10,10 @@ export default function Home() {
     e.preventDefault();
     if (!lista.trim()) return;
 
+
+
+
+    
     try {
       await criarTarefa(lista);
       setlista("");
