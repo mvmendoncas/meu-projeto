@@ -10,6 +10,10 @@ export default function Home() {
     e.preventDefault();
     if (!texto.trim()) return;
 
+
+
+
+    
     try {
       await criarTarefa(texto);
       setTexto("");
