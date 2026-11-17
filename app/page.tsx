@@ -1,30 +1,32 @@
-import Image from "next/image";
-import Cabecalho from "./componentes/Cabecalho";
-import Rodape from "./componentes/Rodape";
-import Link from "next/link";
+"use client";
 
+import { useState } from "react";
+import { criarTarefa } from "@/lib/tarefas";
 
 export default function Home() {
-  const nome = "Maria";
+  const [texto, setTexto] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!texto.trim()) return;
+
+    try {
+      await criarTarefa(texto);
+      setTexto("");
+      alert("Tarefa criada!");
+    } catch (erro) {
+      console.error("Erro ao criar tarefa:", erro);
+    }
+  }
+
   return (
-    <div>
-
-     <nav>
-      <Link href="/">Início</Link>
-      <Link href="/projetos">Projetos</Link>
-      <Link href="/contato">Contato</Link>
-    </nav>
-
-   
-
-    <Image
-      src="/images.jpg"
-      width={300}
-      height={300}
-      alt="Minha foto"
-    />
-
-
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        value={texto}
+        onChange={(e) => setTexto(e.target.value)}
+        placeholder="Nova tarefa"
+      />
+      <button type="submit">Adicionar</button>
+    </form>
   );
 }
