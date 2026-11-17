@@ -17,6 +17,7 @@ export default function Home() {
     } catch (erro) {
       console.error("Erro ao criar tarefa:", erro);
     }
+    console.log("testando nova branch")
   }
 
   return (
