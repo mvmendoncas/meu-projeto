@@ -4,15 +4,15 @@ import { useState } from "react";
 import { criarTarefa } from "@/lib/tarefas";
 
 export default function Home() {
-  const [texto, setTexto] = useState("");
+  const [lista, setlista] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!texto.trim()) return;
+    if (!lista.trim()) return;
 
     try {
-      await criarTarefa(texto);
-      setTexto("");
+      await criarTarefa(lista);
+      setlista("");
       alert("Tarefa criada!");
     } catch (erro) {
       console.error("Erro ao criar tarefa:", erro);
@@ -23,8 +23,8 @@ export default function Home() {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        value={texto}
-        onChange={(e) => setTexto(e.target.value)}
+        value={lista}
+        onChange={(e) => setlista(e.target.value)}
         placeholder="Nova tarefa"
       />
       <button type="submit">Adicionar</button>
